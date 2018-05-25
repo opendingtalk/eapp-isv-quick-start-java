@@ -81,6 +81,7 @@ public class IndexController {
 		String queryString = DingTalkSignatureUtil.paramToQueryString(params, "utf-8");
 		DingTalkClient client = new DefaultDingTalkClient(URLConstant.URL_GET_CORP_TOKEN + "?" + queryString);
 		OapiServiceGetCorpTokenRequest request = new OapiServiceGetCorpTokenRequest();
+		request.setAuthCorpid(corpId);
 		OapiServiceGetCorpTokenResponse response;
 		try {
 			response = client.execute(request);
