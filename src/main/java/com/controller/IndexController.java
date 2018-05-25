@@ -108,7 +108,7 @@ public class IndexController {
 		request.setCode(code);
 		request.setHttpMethod("GET");
 
-		OapiUserGetuserinfoResponse response = null;
+		OapiUserGetuserinfoResponse response;
 		try {
 			response = client.execute(request, accessToken);
 		} catch (ApiException e) {
