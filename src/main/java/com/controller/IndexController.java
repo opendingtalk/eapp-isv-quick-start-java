@@ -43,7 +43,7 @@ public class IndexController {
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	@ResponseBody
 	public Map<String,Object> login(@RequestParam(value = "corpId") String corpId,
-									@RequestParam(value = "requestAuthCode") String requestAuthCode) {
+									@RequestParam(value = "authCode") String requestAuthCode) {
 		Long start = System.currentTimeMillis();
 		OapiServiceGetCorpTokenResponse oapiServiceGetCorpTokenResponse = getOapiServiceGetCorpToken(corpId);
 
@@ -71,7 +71,7 @@ public class IndexController {
 
 		long timestamp = System.currentTimeMillis();
 		//正式应用应该由钉钉通过开发者的回调地址动态获取到
-		String suiteTicket = "";
+		String suiteTicket = getSuiteTickt(Constant.SUITE_KEY);
 		String canonicalString = DingTalkSignatureUtil.getCanonicalString(timestamp, suiteTicket);
 		String signature = DingTalkSignatureUtil.computeSignature(Constant.SUITE_SECRET, canonicalString.toString());
 
@@ -101,8 +101,8 @@ public class IndexController {
 	/**
 	 * 通过钉钉服务端API获取用户在当前企业的userId
 	 * @param accessToken	企业访问凭证Token
-	 * @param code
-	 * @return
+	 * @param code			免登code
+	 * @
 	 */
 	private OapiUserGetuserinfoResponse getOapiUserGetuserinfo(String accessToken, String code) {
 		DingTalkClient client = new DefaultDingTalkClient(URLConstant.URL_GET_USER_INFO);
@@ -121,6 +121,22 @@ public class IndexController {
 			return null;
 		}
 		return response;
+	}
+
+
+
+
+	/**
+	 * suiteTicket是一个定时变化的票据，主要目的是为了开发者的应用与钉钉之间访问时的安全加固。
+	 * 测试套件：可随意设置，钉钉只做签名不做安全加固限制。
+	 * 正式套件：开发者应该从自己的db中读取suiteTicket,suiteTicket是由开发者在开发者平台设置的套件回调地址，由钉钉定时推送给应用，
+	 * 由开发者在回调地址所在代码解密和验证签名完成后获取到的.正式套件钉钉会在开发者代码访问时做严格检查。
+	 * @return suiteTicket
+	 */
+	private String getSuiteTickt(String suiteKey){
+		//正式套件必须由套件回调地址从钉钉推送获取
+		return "temp_suite_ticket_only4_test";
+
 	}
 }
 
