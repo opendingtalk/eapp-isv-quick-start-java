@@ -3,12 +3,12 @@ package com.controller;
 import com.config.Constant;
 import com.dingtalk.api.DefaultDingTalkClient;
 import com.dingtalk.api.DingTalkClient;
+import com.dingtalk.api.DingTalkSignatureUtil;
 import com.dingtalk.api.request.OapiServiceGetCorpTokenRequest;
 import com.dingtalk.api.request.OapiUserGetuserinfoRequest;
 import com.dingtalk.api.response.OapiServiceGetCorpTokenResponse;
 import com.dingtalk.api.response.OapiUserGetuserinfoResponse;
-import com.sdk.DingTalkSignatureUtil;
-import com.sdk.URLConstant;
+import com.config.URLConstant;
 import com.taobao.api.ApiException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,7 +19,7 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 /**
- * DEMO
+ * Quick-Start示例代码
  * 实现了最简单的免登功能
  */
 @RestController
@@ -72,9 +72,7 @@ public class IndexController {
 		long timestamp = System.currentTimeMillis();
 		//正式应用应该由钉钉通过开发者的回调地址动态获取到
 		String suiteTicket = getSuiteTickt(Constant.SUITE_KEY);
-		String canonicalString = DingTalkSignatureUtil.getCanonicalString(timestamp, suiteTicket);
-		String signature = DingTalkSignatureUtil.computeSignature(Constant.SUITE_SECRET, canonicalString.toString());
-
+		String signature = DingTalkSignatureUtil.computeSignature(Constant.SUITE_SECRET, DingTalkSignatureUtil.getCanonicalStringForIsv(timestamp, suiteTicket));
 		Map<String, String> params = new LinkedHashMap<String, String>();
 		params.put("timestamp", String.valueOf(timestamp));
 		params.put("suiteTicket", suiteTicket);

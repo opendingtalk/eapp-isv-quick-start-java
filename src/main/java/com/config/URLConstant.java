@@ -1,4 +1,4 @@
-package com.sdk;
+package com.config;
 
 public class URLConstant {
     /**
