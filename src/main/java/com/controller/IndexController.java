@@ -10,6 +10,7 @@ import com.dingtalk.api.response.OapiServiceGetCorpTokenResponse;
 import com.dingtalk.api.response.OapiUserGetuserinfoResponse;
 import com.config.URLConstant;
 import com.taobao.api.ApiException;
+import com.util.ServiceResult;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.*;
@@ -42,7 +43,7 @@ public class IndexController {
 	 */
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	@ResponseBody
-	public Map<String,Object> login(@RequestParam(value = "corpId") String corpId,
+	public ServiceResult login(@RequestParam(value = "corpId") String corpId,
 									@RequestParam(value = "authCode") String requestAuthCode) {
 		Long start = System.currentTimeMillis();
 		OapiServiceGetCorpTokenResponse oapiServiceGetCorpTokenResponse = getOapiServiceGetCorpToken(corpId);
@@ -55,9 +56,8 @@ public class IndexController {
 		Map<String,Object> resultMap = new HashMap<>();
 		resultMap.put("userId",userId);
 		resultMap.put("corpId",corpId);
-		resultMap.put("errcode",'0');
-		bizLogger.info("cost:"+(System.currentTimeMillis()-start));
-		return resultMap;
+		ServiceResult serviceResult = ServiceResult.success(resultMap);
+		return serviceResult;
 	}
 
 	/**
