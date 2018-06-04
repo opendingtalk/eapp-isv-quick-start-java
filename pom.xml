@@ -70,6 +70,19 @@
 			<scope>system</scope>
 			<systemPath>${pom.basedir}/lib/taobao-sdk-java-auto_1479188381469-20180525.jar</systemPath>
 		</dependency>
+		<dependency>
+			<groupId>com.taobao.top</groupId>
+			<artifactId>lippi-oapi-encrpt</artifactId>
+			<version>dingtalk-SNAPSHOT</version>
+			<scope>system</scope>
+			<systemPath>${pom.basedir}/lib/lippi-oapi-encrpt.jar</systemPath>
+		</dependency>
+		<dependency>
+			<groupId>com.alibaba</groupId>
+			<artifactId>fastjson</artifactId>
+			<version>1.2.6</version>
+		</dependency>
+
 	</dependencies>
 	
 	<build>
