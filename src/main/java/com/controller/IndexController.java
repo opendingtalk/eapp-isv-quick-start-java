@@ -20,8 +20,8 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 /**
- * Quick-Start示例代码
- * 实现了最简单的免登功能
+ * ISV E应用Quick-Start示例代码
+ * 实现了最简单的免密登录（免登）功能
  */
 @RestController
 public class IndexController {
@@ -127,13 +127,13 @@ public class IndexController {
 
 	/**
 	 * suiteTicket是一个定时变化的票据，主要目的是为了开发者的应用与钉钉之间访问时的安全加固。
-	 * 测试套件：可随意设置，钉钉只做签名不做安全加固限制。
-	 * 正式套件：开发者应该从自己的db中读取suiteTicket,suiteTicket是由开发者在开发者平台设置的套件回调地址，由钉钉定时推送给应用，
-	 * 由开发者在回调地址所在代码解密和验证签名完成后获取到的.正式套件钉钉会在开发者代码访问时做严格检查。
+	 * 测试应用：可随意设置，钉钉只做签名不做安全加固限制。
+	 * 正式应用：开发者应该从自己的db中读取suiteTicket,suiteTicket是由开发者在开发者平台设置的应用回调地址，由钉钉定时推送给应用，
+	 * 由开发者在回调地址所在代码解密和验证签名完成后获取到的.正式应用钉钉会在开发者代码访问时做严格检查。
 	 * @return suiteTicket
 	 */
 	private String getSuiteTickt(String suiteKey){
-		//正式套件必须由套件回调地址从钉钉推送获取
+		//正式应用必须由应用回调地址从钉钉推送获取
 		return "temp_suite_ticket_only4_test";
 
 	}
