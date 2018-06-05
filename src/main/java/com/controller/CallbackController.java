@@ -90,6 +90,7 @@ public class CallbackController {
             // 返回success的加密信息表示回调处理成功
             return dingTalkEncryptor.getEncryptedMap(CALLBACK_RESPONSE_SUCCESS, System.currentTimeMillis(), Utils.getRandomStr(8));
         } catch (Exception e) {
+            //失败的情况，应用的开发者应该通过告警感知，并干预修复
             mainLogger.error("process callback failed！"+params,e);
             return null;
         }
