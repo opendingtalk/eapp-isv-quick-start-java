@@ -77,7 +77,7 @@ public class IndexController {
 
 		long timestamp = System.currentTimeMillis();
 		//正式应用应该由钉钉通过开发者的回调地址动态获取到
-		String suiteTicket = getSuiteTickt(Constant.SUITE_KEY);
+		String suiteTicket = getSuiteTicket(Constant.SUITE_KEY);
 		String signature = DingTalkSignatureUtil.computeSignature(Constant.SUITE_SECRET, DingTalkSignatureUtil.getCanonicalStringForIsv(timestamp, suiteTicket));
 		Map<String, String> params = new LinkedHashMap<String, String>();
 		params.put("timestamp", String.valueOf(timestamp));
@@ -138,7 +138,7 @@ public class IndexController {
 	 * 由开发者在回调地址所在代码解密和验证签名完成后获取到的.正式应用钉钉会在开发者代码访问时做严格检查。
 	 * @return suiteTicket
 	 */
-	private String getSuiteTickt(String suiteKey){
+	private String getSuiteTicket(String suiteKey){
 		//正式应用必须由应用回调地址从钉钉推送获取
 		return "temp_suite_ticket_only4_test";
 
