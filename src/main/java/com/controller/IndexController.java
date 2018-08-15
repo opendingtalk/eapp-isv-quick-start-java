@@ -8,7 +8,7 @@ import com.dingtalk.api.request.OapiServiceGetCorpTokenRequest;
 import com.dingtalk.api.request.OapiUserGetuserinfoRequest;
 import com.dingtalk.api.response.OapiServiceGetCorpTokenResponse;
 import com.dingtalk.api.response.OapiUserGetuserinfoResponse;
-import com.config.URLConstant;
+import com.config.ApiUrlConstant;
 import com.taobao.api.ApiException;
 import com.util.ServiceResult;
 import org.slf4j.Logger;
@@ -85,7 +85,7 @@ public class IndexController {
 		params.put("accessKey", Constant.SUITE_KEY);
 		params.put("signature", signature);
 		String queryString = DingTalkSignatureUtil.paramToQueryString(params, "utf-8");
-		DingTalkClient client = new DefaultDingTalkClient(URLConstant.URL_GET_CORP_TOKEN + "?" + queryString);
+		DingTalkClient client = new DefaultDingTalkClient(ApiUrlConstant.URL_GET_CORP_TOKEN + "?" + queryString);
 		OapiServiceGetCorpTokenRequest request = new OapiServiceGetCorpTokenRequest();
 		request.setAuthCorpid(corpId);
 		OapiServiceGetCorpTokenResponse response;
@@ -110,7 +110,7 @@ public class IndexController {
 	 * @
 	 */
 	private OapiUserGetuserinfoResponse getOapiUserGetuserinfo(String accessToken, String code) {
-		DingTalkClient client = new DefaultDingTalkClient(URLConstant.URL_GET_USER_INFO);
+		DingTalkClient client = new DefaultDingTalkClient(ApiUrlConstant.URL_GET_USER_INFO);
 		OapiUserGetuserinfoRequest request = new OapiUserGetuserinfoRequest();
 		request.setCode(code);
 		request.setHttpMethod("GET");

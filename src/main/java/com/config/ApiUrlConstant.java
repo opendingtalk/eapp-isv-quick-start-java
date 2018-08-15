@@ -1,6 +1,6 @@
 package com.config;
 
-public class URLConstant {
+public class ApiUrlConstant {
     /**
      * 获取可访问企业相关信息的accessToken的URL
      */
