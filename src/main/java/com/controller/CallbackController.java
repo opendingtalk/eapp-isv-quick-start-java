@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.Map;
 
 /**
- * ISV E应用回调信息处理
+ * ISV 小程序回调信息处理
  */
 @RestController
 public class CallbackController {
@@ -28,11 +28,11 @@ public class CallbackController {
     private static final Logger mainLogger = LoggerFactory.getLogger(CallbackController.class);
 
     /**
-     * 创建套件后，验证回调URL创建有效事件（第一次保存回调URL之前）
+     * 创建应用，验证回调URL创建有效事件（第一次保存回调URL之前）
      */
     private static final String EVENT_CHECK_CREATE_SUITE_URL = "check_create_suite_url";
     /**
-     * 创建套件后，验证回调URL变更有效事件（第一次保存回调URL之后）
+     * 创建应用，验证回调URL变更有效事件（第一次保存回调URL之后）
      */
     private static final String EVENT_CHECK_UPADTE_SUITE_URL = "check_update_suite_url";
 
