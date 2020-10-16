@@ -26,7 +26,7 @@ import java.util.Map;
 @RestController
 public class IndexController {
 
-    private Logger bizLogger = LoggerFactory.getLogger(IndexController.class);
+    private final Logger log = LoggerFactory.getLogger(getClass());
 
     /**
      * 欢迎页面
@@ -44,8 +44,8 @@ public class IndexController {
      */
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public Object login(
-    	@RequestParam(value = "corpId") String corpId,
-        @RequestParam(value = "authCode") String requestAuthCode) {
+            @RequestParam(value = "corpId") String corpId,
+            @RequestParam(value = "authCode") String requestAuthCode) {
         Long start = System.currentTimeMillis();
         //获取accessToken,注意正是代码要有异常流处理
         OapiServiceGetCorpTokenResponse oapiServiceGetCorpTokenResponse = getOapiServiceGetCorpToken(corpId);
@@ -62,7 +62,7 @@ public class IndexController {
         Map<String, Object> resultMap = new HashMap<>();
         resultMap.put("userId", userId);
         resultMap.put("corpId", corpId);
-		return ServiceResult.success(resultMap);
+        return ServiceResult.success(resultMap);
     }
 
     /**
@@ -79,7 +79,7 @@ public class IndexController {
         //正式应用应该由钉钉通过开发者的回调地址动态获取到
         String suiteTicket = getSuiteTicket(Constant.SUITE_KEY);
         String signature = DingTalkSignatureUtil.computeSignature(Constant.SUITE_SECRET,
-            DingTalkSignatureUtil.getCanonicalStringForIsv(timestamp, suiteTicket));
+                DingTalkSignatureUtil.getCanonicalStringForIsv(timestamp, suiteTicket));
         Map<String, String> params = new LinkedHashMap<String, String>();
         params.put("timestamp", String.valueOf(timestamp));
         params.put("suiteTicket", suiteTicket);
@@ -93,7 +93,7 @@ public class IndexController {
         try {
             response = client.execute(request);
         } catch (ApiException e) {
-            bizLogger.info(e.toString(), e);
+            log.info(e.toString(), e);
             return null;
         }
         if (response == null || !response.isSuccess()) {

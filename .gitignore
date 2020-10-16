@@ -1,6 +1,9 @@
-target/
-
-*.iml
-.idea
-.idea/*
+target
 .DS_Store
+*.log
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr

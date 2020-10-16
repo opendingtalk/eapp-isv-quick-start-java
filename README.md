@@ -1,6 +1,6 @@
 
 ## 运行环境开发工具
-java7  
+java8
 intellij idea
 
 ## 项目结构
@@ -23,7 +23,6 @@ intellij idea
     │   │       ├── controller
     │   │       │   └── IndexController.java
     │   │       └── util
-    │   │           ├── LogFormatter.java
     │   │           └── ServiceResult.java
     │   └── resources
     │       └── application.properties
@@ -36,7 +35,7 @@ intellij idea
                 
 ## 项目配置
 1.更新Constant.java文件的SUITE_KEY，SUITE_SECRET三个属性。  
-具体数值值请登录[开发者后台套件列表](http://open-dev.dingtalk.com/#/providerSuite?_k=j3e5en)，查看套件详情中获取      
+具体数值值请登录[开发者后台套件列表](https://open-dev.dingtalk.com/#/isveapp)，查看套件详情中获取
 
 2.更新application.properties文件的服务器启动端口。
 
